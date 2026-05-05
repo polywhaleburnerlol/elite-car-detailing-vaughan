@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Session | Elite Car Detailing Vaughan</title>
+    <meta name="description" content="Book your car detailing session in Vaughan. We confirm within 2 hours. No upfront payment. Serving Vaughan, Woodbridge, Maple & Kleinburg.">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header id="site-header">
+    <nav>
+        <a href="index.html" class="logo-link" aria-label="Elite Car Detailing Vaughan — Home">
+            <div class="logo-mark" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <polygon points="16,2 30,12 24,30 8,30 2,12" stroke="#c8a96e" stroke-width="1.5" fill="none"/>
+                    <polygon points="16,8 24,14 20,26 12,26 8,14" fill="#c8a96e" opacity="0.15"/>
+                    <line x1="16" y1="2" x2="16" y2="30" stroke="#c8a96e" stroke-width="0.75" opacity="0.4"/>
+                </svg>
+            </div>
+            <div class="logo-text-block">
+                <span class="logo-name">ELITE CAR DETAILING</span>
+                <span class="logo-location">VAUGHAN</span>
+            </div>
+        </a>
+        <ul class="nav-links" role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="book.html" class="nav-cta active-link">Book Now</a></li>
+        </ul>
+        <div class="nav-phone"><a href="tel:+16473957905">647-395-7905</a></div>
+    </nav>
+</header>
+
+<button class="hamburger-fixed" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+</button>
+
+<div class="page-banner">
+    <div class="page-banner-inner">
+        <span class="page-banner-tag">Reserve Your Session</span>
+        <h1 class="page-banner-title">Ready to See<br>the Difference?</h1>
+        <p class="page-banner-sub">Fill in the form and we'll confirm your booking within 2 hours. We service all of York Region — Vaughan, Woodbridge, Maple, Kleinburg &amp; beyond.</p>
+    </div>
+</div>
+
+<section class="section book-section" id="book">
+    <div class="container">
+        <div class="book-layout">
+
+            <div class="book-info reveal">
+                <div class="book-contact">
+                    <a href="tel:+16473957905" class="contact-line">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                            <path d="M3 3h3l1.5 3.5L6 8a9.5 9.5 0 004 4l1.5-1.5 3.5 1.5v3A1.5 1.5 0 0114 16.5 13.5 13.5 0 01.5 3 1.5 1.5 0 013 3z"
+                                  stroke="#c8a96e" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        647-395-7905
+                    </a>
+                    <p class="contact-note">Available Mon – Sun, 8am – 8pm</p>
+                </div>
+
+                <div class="book-guarantees">
+                    <div class="guarantee-item">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="M2 8l4 4 8-8" stroke="#c8a96e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Confirmed within 2 hours</span>
+                    </div>
+                    <div class="guarantee-item">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="M2 8l4 4 8-8" stroke="#c8a96e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>We come to your location</span>
+                    </div>
+                    <div class="guarantee-item">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="M2 8l4 4 8-8" stroke="#c8a96e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Satisfaction guaranteed or we return</span>
+                    </div>
+                    <div class="guarantee-item">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="M2 8l4 4 8-8" stroke="#c8a96e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>No upfront payment required</span>
+                    </div>
+                </div>
+
+                <div style="margin-top:48px; padding-top:40px; border-top:1px solid var(--border);">
+                    <p style="color:var(--text-muted); font-size:13px; font-weight:300; line-height:1.8;">Not sure which programme is right for your vehicle? Select "Help Me Choose" in the form and we'll recommend the best option based on your vehicle's condition and your goals.</p>
+                </div>
+            </div>
+
+            <div class="book-form-wrap reveal">
+                <form class="book-form custom-contact-form" id="booking-form"
+                      action="https://formspree.io/f/mbdwonng" method="POST">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="fname">Full Name</label>
+                            <input type="text" id="fname" name="name" required placeholder="Alex Johnson" autocomplete="name">
+                        </div>
+                        <div class="input-group">
+                            <label for="fphone">Phone Number</label>
+                            <input type="tel" id="fphone" name="phone" required placeholder="(647) 555-0123" autocomplete="tel">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="femail">Email Address</label>
+                        <input type="email" id="femail" name="email" required placeholder="alex@example.com" autocomplete="email">
+                    </div>
+                    <div class="input-group">
+                        <label for="fservice">Programme</label>
+                        <select id="fservice" name="service" required>
+                            <option value="" disabled selected>Select a programme…</option>
+                            <option value="refresh">The Refresh — Exterior Detail</option>
+                            <option value="revival">The Revival — Interior Deep Clean</option>
+                            <option value="signature">The Signature — Full Detail</option>
+                            <option value="correction">The Correction — Paint Correction</option>
+                            <option value="shield">The Shield — Ceramic Coating</option>
+                            <option value="pinnacle">The Pinnacle — Correction + Ceramic</option>
+                            <option value="unsure">Not Sure — Help Me Choose</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="fvehicle">Vehicle (Year, Make, Model)</label>
+                            <input type="text" id="fvehicle" name="vehicle" placeholder="2022 BMW M4" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="flocation">Your Location</label>
+                            <input type="text" id="flocation" name="location" placeholder="Vaughan, ON">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="fnotes">Additional Notes</label>
+                        <textarea id="fnotes" name="notes" rows="3" placeholder="Any specific concerns, preferred dates, or questions…"></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        RESERVE MY SESSION
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                            <path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <p class="form-note">No upfront payment. Binding quote provided on confirmation.</p>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="footer-logo-mark" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                    <polygon points="16,2 30,12 24,30 8,30 2,12" stroke="#c8a96e" stroke-width="1.5" fill="none"/>
+                    <polygon points="16,8 24,14 20,26 12,26 8,14" fill="#c8a96e" opacity="0.12"/>
+                </svg>
+            </div>
+            <div>
+                <span class="footer-name">ELITE CAR DETAILING</span>
+                <span class="footer-location">VAUGHAN</span>
+            </div>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="book.html">Book</a>
+        </div>
+        <div class="footer-contact-col">
+            <a href="tel:+16473957905" class="footer-phone">647-395-7905</a>
+            <p>Vaughan &amp; York Region</p>
+            <p>Mon – Sun &nbsp;·&nbsp; 8am – 8pm</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Elite Car Detailing Vaughan &nbsp;|&nbsp; All Rights Reserved</p>
+        <p>Serving Vaughan, Woodbridge, Maple, Kleinburg &amp; the GTA</p>
+    </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

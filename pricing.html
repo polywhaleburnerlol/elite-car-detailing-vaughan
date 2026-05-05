@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing | Elite Car Detailing Vaughan</title>
+    <meta name="description" content="Transparent pricing for every detailing programme. From exterior refresh to full paint correction and ceramic coating. Serving Vaughan and York Region.">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+    <style>
+        /* ── PRICING PAGE SPECIFIC ── */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            margin-bottom: 80px;
+        }
+        .price-card {
+            background: #0e0e0e;
+            padding: 44px 36px;
+            position: relative;
+            transition: background 0.3s;
+        }
+        .price-card:hover { background: #131313; }
+        .price-card--featured {
+            background: #111009;
+        }
+        .price-card--featured:hover { background: #161208; }
+        .price-card--pinnacle {
+            background: #0a0906;
+            border: 1px solid rgba(200,169,110,0.25);
+            margin: -1px;
+            z-index: 1;
+        }
+        .price-featured-bar {
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 3px; background: var(--gold);
+        }
+        .price-pinnacle-bar {
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #c8a96e, #f0d898, #c8a96e);
+        }
+        .price-badge {
+            display: inline-block;
+            font-family: var(--font-body); font-size: 10px; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: #080808; background: var(--gold);
+            padding: 4px 10px; margin-bottom: 20px;
+        }
+        .price-badge--pinnacle {
+            background: linear-gradient(90deg, #c8a96e, #f0d898);
+        }
+        .price-num {
+            font-family: var(--font-body); font-size: 11px; font-weight: 400;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--text-muted); margin-bottom: 12px;
+        }
+        .price-name {
+            font-family: var(--font-display); font-size: 32px;
+            letter-spacing: 2px; color: var(--off-white);
+            margin: 0 0 8px;
+        }
+        .price-tagline {
+            font-family: var(--font-body); font-size: 13px; font-weight: 300;
+            color: var(--text-muted); margin-bottom: 28px; line-height: 1.6;
+        }
+        .price-amount {
+            margin-bottom: 8px;
+        }
+        .price-from {
+            font-family: var(--font-body); font-size: 11px; font-weight: 400;
+            letter-spacing: 1px; color: var(--text-muted);
+            text-transform: uppercase; display: block; margin-bottom: 4px;
+        }
+        .price-number {
+            font-family: var(--font-display); font-size: 56px;
+            letter-spacing: 1px; color: var(--off-white); line-height: 1;
+        }
+        .price-card--pinnacle .price-number { color: var(--gold); }
+        .price-duration {
+            font-family: var(--font-body); font-size: 12px; font-weight: 300;
+            color: var(--text-muted); margin-bottom: 32px; padding-bottom: 28px;
+            border-bottom: 1px solid var(--border);
+        }
+        .price-includes {
+            list-style: none; padding: 0; margin: 0 0 36px;
+            display: flex; flex-direction: column; gap: 11px;
+        }
+        .price-includes li {
+            font-family: var(--font-body); font-size: 13px; font-weight: 300;
+            color: var(--text-muted); display: flex; align-items: flex-start; gap: 10px;
+            line-height: 1.5;
+        }
+        .price-includes li::before {
+            content: '';
+            display: block; flex-shrink: 0;
+            width: 14px; height: 14px; margin-top: 2px;
+            border-radius: 50%; border: 1px solid var(--gold);
+            background: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 5l2.5 2.5 4-4' stroke='%23c8a96e' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/10px no-repeat;
+        }
+        .price-cta {
+            display: block; width: 100%; text-align: center;
+            font-family: var(--font-body); font-size: 12px; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+            padding: 14px; border: 1px solid var(--gold);
+            color: var(--gold); background: transparent;
+            transition: background 0.2s, color 0.2s;
+        }
+        .price-cta:hover { background: var(--gold); color: #080808; }
+        .price-card--pinnacle .price-cta {
+            background: var(--gold); color: #080808;
+        }
+        .price-card--pinnacle .price-cta:hover {
+            background: var(--gold-light);
+        }
+
+        /* Size note */
+        .pricing-note {
+            background: #0e0e0e; border: 1px solid var(--border);
+            padding: 28px 36px; margin-bottom: 80px;
+            display: flex; align-items: flex-start; gap: 20px;
+        }
+        .pricing-note-icon {
+            flex-shrink: 0; width: 36px; height: 36px;
+            border: 1px solid var(--gold); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .pricing-note-text h4 {
+            font-family: var(--font-body); font-size: 13px; font-weight: 600;
+            letter-spacing: 1px; text-transform: uppercase;
+            color: var(--off-white); margin: 0 0 8px;
+        }
+        .pricing-note-text p {
+            font-family: var(--font-body); font-size: 13px; font-weight: 300;
+            color: var(--text-muted); margin: 0; line-height: 1.7;
+        }
+
+        /* Comparison table */
+        .compare-table {
+            width: 100%; border-collapse: collapse;
+            margin-bottom: 80px;
+        }
+        .compare-table th, .compare-table td {
+            font-family: var(--font-body); font-size: 13px;
+            padding: 14px 16px; text-align: center;
+            border: 1px solid var(--border);
+        }
+        .compare-table th {
+            font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+            text-transform: uppercase; color: var(--gold);
+            background: #0e0e0e;
+        }
+        .compare-table td { color: var(--text-muted); font-weight: 300; }
+        .compare-table td:first-child {
+            text-align: left; color: var(--off-white); font-weight: 400;
+        }
+        .compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+        .check { color: var(--gold); }
+        .cross { color: #333; }
+
+        /* Mobile pricing */
+        @media (max-width: 900px) {
+            .pricing-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .pricing-grid { grid-template-columns: 1fr; }
+            .price-card { padding: 32px 24px; }
+            .compare-table { font-size: 11px; }
+            .compare-table th, .compare-table td { padding: 10px 8px; }
+            .pricing-note { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="site-header">
+    <nav>
+        <a href="index.html" class="logo-link" aria-label="Elite Car Detailing Vaughan — Home">
+            <div class="logo-mark" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <polygon points="16,2 30,12 24,30 8,30 2,12" stroke="#c8a96e" stroke-width="1.5" fill="none"/>
+                    <polygon points="16,8 24,14 20,26 12,26 8,14" fill="#c8a96e" opacity="0.15"/>
+                    <line x1="16" y1="2" x2="16" y2="30" stroke="#c8a96e" stroke-width="0.75" opacity="0.4"/>
+                </svg>
+            </div>
+            <div class="logo-text-block">
+                <span class="logo-name">ELITE CAR DETAILING</span>
+                <span class="logo-location">VAUGHAN</span>
+            </div>
+        </a>
+        <ul class="nav-links" role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="pricing.html" class="active-link">Pricing</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="book.html" class="nav-cta">Book Now</a></li>
+        </ul>
+        <div class="nav-phone"><a href="tel:+16473957905">647-395-7905</a></div>
+    </nav>
+</header>
+
+<button class="hamburger-fixed" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+</button>
+
+<div class="page-banner">
+    <div class="page-banner-inner">
+        <span class="page-banner-tag">Transparent Pricing</span>
+        <h1 class="page-banner-title">Invest In<br>Your Vehicle.</h1>
+        <p class="page-banner-sub">No hidden fees. No surprises. Every price listed is what you pay — and every programme is worth more than it costs.</p>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+
+        <!-- PRICING NOTE -->
+        <div class="pricing-note reveal">
+            <div class="pricing-note-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <circle cx="8" cy="8" r="6.5" stroke="#c8a96e" stroke-width="1.2"/>
+                    <path d="M8 7v4M8 5.5v.5" stroke="#c8a96e" stroke-width="1.4" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="pricing-note-text">
+                <h4>Prices vary by vehicle size</h4>
+                <p>All prices shown are for standard sedans and coupes. <strong style="color:var(--off-white); font-weight:500;">Add $30–$50</strong> for SUVs, crossovers, and minivans. <strong style="color:var(--off-white); font-weight:500;">Add $50–$80</strong> for full-size trucks and large SUVs. Final quote confirmed at booking — no surprises on the day.</p>
+            </div>
+        </div>
+
+        <!-- PRICING CARDS -->
+        <div class="pricing-grid reveal">
+
+            <!-- 01 The Refresh -->
+            <div class="price-card">
+                <div class="price-num">01</div>
+                <h3 class="price-name">The Refresh</h3>
+                <p class="price-tagline">Exterior precision reset</p>
+                <div class="price-amount">
+                    <span class="price-from">Starting from</span>
+                    <span class="price-number">$149</span>
+                </div>
+                <p class="price-duration">2–3 hours</p>
+                <ul class="price-includes">
+                    <li>Hand wash &amp; hand dry</li>
+                    <li>Iron decontamination</li>
+                    <li>Clay bar treatment</li>
+                    <li>Spray sealant protection</li>
+                    <li>Tyre &amp; trim dressing</li>
+                    <li>Exterior glass clean</li>
+                </ul>
+                <a href="book.html" class="price-cta">Book This</a>
+            </div>
+
+            <!-- 02 The Revival -->
+            <div class="price-card">
+                <div class="price-num">02</div>
+                <h3 class="price-name">The Revival</h3>
+                <p class="price-tagline">Interior deep restoration</p>
+                <div class="price-amount">
+                    <span class="price-from">Starting from</span>
+                    <span class="price-number">$179</span>
+                </div>
+                <p class="price-duration">3–5 hours</p>
+                <ul class="price-includes">
+                    <li>Full 3-stage vacuum</li>
+                    <li>Steam sanitization</li>
+                    <li>Deep stain extraction</li>
+                    <li>Leather conditioning</li>
+                    <li>Odour elimination</li>
+                    <li>Interior glass polish</li>
+                    <li>UV plastic protectant</li>
+                </ul>
+                <a href="book.html" class="price-cta">Book This</a>
+            </div>
+
+            <!-- 03 The Signature -->
+            <div class="price-card price-card--featured">
+                <div class="price-featured-bar"></div>
+                <span class="price-badge">Most Popular</span>
+                <div class="price-num">03</div>
+                <h3 class="price-name">The Signature</h3>
+                <p class="price-tagline">Complete head-to-tail detail</p>
+                <div class="price-amount">
+                    <span class="price-from">Starting from</span>
+                    <span class="price-number">$299</span>
+                </div>
+                <p class="price-duration">5–8 hours</p>
+                <ul class="price-includes">
+                    <li>Everything in The Refresh</li>
+                    <li>Everything in The Revival</li>
+                    <li>Engine bay cleaning</li>
+                    <li>Door jambs &amp; panels</li>
+                    <li>All glass polished inside &amp; out</li>
+                    <li>Spray sealant finish coat</li>
+                </ul>
+                <a href="book.html" class="price-cta">Book This</a>
+            </div>
+
+            <!-- 04 The Correction -->
+            <div class="price-card">
+                <div class="price-num">04</div>
+                <h3 class="price-name">The Correction</h3>
+                <p class="price-tagline">Machine paint correction</p>
+                <div class="price-amount">
+                    <span class="price-from">Starting from</span>
+                    <span class="price-number">$499</span>
+                </div>
+                <p class="price-duration">6–10 hours</p>
+                <ul class="price-includes">
+                    <li>Paint depth inspection</li>
+                    <li>Single or two-stage machine polish</li>
+                    <li>Swirl &amp; scratch removal</li>
+                    <li>Oxidation correction</li>
+                    <li>Water spot elimination</li>
+                    <li>Panel wipe-down &amp; IPA prep</li>
+                </ul>
+                <a href="book.html" class="price-cta">Book This</a>
+            </div>
+
+            <!-- 05 The Shield -->
+            <div class="price-card">
+                <div class="price-num">05</div>
+                <h3 class="price-name">The Shield</h3>
+                <p class="price-tagline">Nano-ceramic coating</p>
+                <div class="price-amount">
+                    <span class="price-from">Starting from</span>
+                    <span class="price-number">$849</span>
+                </div>
+                <p class="price-duration">1–2 days</p>
+                <ul class="price-includes">
+                    <li>Full surface decontamination</li>
+                    <li>Panel prep &amp; light polish</li>
+                    <li>Professional ceramic application</li>
+                    <li>24-hour controlled cure</li>
+                    <li>Hydrophobic coating — 3–5 yr protection</li>
+                    <li>UV &amp; scratch resistance</li>
+                </ul>
+                <a href="book.html" class="price-cta">Book This</a>
+            </div>
+
+            <!-- 06 The Pinnacle -->
+            <div class="price-card price-card--pinnacle">
+                <div class="price-pinnacle-bar"></div>
+                <span class="price-badge price-badge--pinnacle">Elite Programme</span>
+                <div class="price-num">06</div>
+                <h3 class="price-name">The Pinnacle</h3>
+                <p class="price-tagline">Full correction + ceramic coating</p>
+                <div class="price-amount">
+                    <span class="price-from">Starting from</span>
+                    <span class="price-number">$1,299</span>
+                </div>
+                <p class="price-duration">2–3 days</p>
+                <ul class="price-includes">
+                    <li>Complete paint correction</li>
+                    <li>Premium ceramic coating application</li>
+                    <li>Full interior deep clean</li>
+                    <li>All trim &amp; glass coated</li>
+                    <li>5+ year protection warranty</li>
+                    <li>Before &amp; after documentation</li>
+                </ul>
+                <a href="book.html" class="price-cta">Reserve The Pinnacle</a>
+            </div>
+
+        </div>
+
+        <!-- COMPARISON TABLE -->
+        <div class="section-header reveal">
+            <span class="section-tag">At a Glance</span>
+            <h2 class="section-title">What's Included<br>in Each Programme.</h2>
+        </div>
+
+        <div class="reveal" style="overflow-x:auto; margin-bottom:80px;">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:left;">Feature</th>
+                        <th>Refresh</th>
+                        <th>Revival</th>
+                        <th>Signature</th>
+                        <th>Correction</th>
+                        <th>Shield</th>
+                        <th>Pinnacle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Hand Wash &amp; Dry</td><td class="check">✓</td><td class="cross">—</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+                    <tr><td>Clay Bar Treatment</td><td class="check">✓</td><td class="cross">—</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+                    <tr><td>Tyre &amp; Trim Dressing</td><td class="check">✓</td><td class="cross">—</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+                    <tr><td>Interior Vacuum</td><td class="cross">—</td><td class="check">✓</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td></tr>
+                    <tr><td>Steam Sanitization</td><td class="cross">—</td><td class="check">✓</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td></tr>
+                    <tr><td>Leather Conditioning</td><td class="cross">—</td><td class="check">✓</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td></tr>
+                    <tr><td>Engine Bay Clean</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td></tr>
+                    <tr><td>Machine Paint Correction</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td><td class="cross">—</td><td class="check">✓</td></tr>
+                    <tr><td>Swirl &amp; Scratch Removal</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td><td class="cross">—</td><td class="check">✓</td></tr>
+                    <tr><td>Ceramic Coating</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+                    <tr><td>Multi-Year Protection</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td><td class="check">3–5 yr</td><td class="check">5+ yr</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- FAQ -->
+        <div class="section-header reveal">
+            <span class="section-tag">Common Questions</span>
+            <h2 class="section-title">Pricing FAQs.</h2>
+        </div>
+
+        <div class="process-grid reveal" style="margin-bottom:0;">
+            <div class="process-step">
+                <h3>Do you charge more for larger vehicles?</h3>
+                <p>Yes — SUVs and crossovers add $30–$50. Full-size trucks and large SUVs add $50–$80. Your exact quote is confirmed at booking, before any work begins.</p>
+            </div>
+            <div class="process-step">
+                <h3>Is there an upfront deposit?</h3>
+                <p>No. We don't take payment until the job is complete and you're satisfied. We believe the work should speak before the invoice does.</p>
+            </div>
+            <div class="process-step">
+                <h3>What if my car is in worse condition than expected?</h3>
+                <p>We assess your vehicle on arrival. If additional work is needed, we'll tell you before we start — never after. You approve any changes before we proceed.</p>
+            </div>
+            <div class="process-step">
+                <h3>Not sure which programme you need?</h3>
+                <p>Select "Help Me Choose" on the booking form. We'll ask a few questions about your vehicle and recommend the right programme before confirming anything.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="section section--dark">
+    <div class="container" style="text-align:center; max-width:640px;">
+        <span class="section-tag section-tag--light">No Upfront Payment</span>
+        <h2 class="section-title section-title--light" style="margin-bottom:24px;">Ready to Book<br>Your Programme?</h2>
+        <p style="color:var(--text-muted); font-weight:300; margin-bottom:40px; line-height:1.8;">Confirmed within 2 hours. We come to you. Satisfaction guaranteed or we return.</p>
+        <a href="book.html" class="btn-primary">RESERVE MY SESSION &nbsp;→</a>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="footer-logo-mark" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                    <polygon points="16,2 30,12 24,30 8,30 2,12" stroke="#c8a96e" stroke-width="1.5" fill="none"/>
+                    <polygon points="16,8 24,14 20,26 12,26 8,14" fill="#c8a96e" opacity="0.12"/>
+                </svg>
+            </div>
+            <div>
+                <span class="footer-name">ELITE CAR DETAILING</span>
+                <span class="footer-location">VAUGHAN</span>
+            </div>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="book.html">Book</a>
+        </div>
+        <div class="footer-contact-col">
+            <a href="tel:+16473957905" class="footer-phone">647-395-7905</a>
+            <p>Vaughan &amp; York Region</p>
+            <p>Mon – Sun &nbsp;·&nbsp; 8am – 8pm</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Elite Car Detailing Vaughan &nbsp;|&nbsp; All Rights Reserved</p>
+        <p>Serving Vaughan, Woodbridge, Maple, Kleinburg &amp; the GTA</p>
+    </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

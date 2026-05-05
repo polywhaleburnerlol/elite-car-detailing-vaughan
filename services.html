@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Elite Car Detailing Vaughan</title>
+    <meta name="description" content="Six bespoke detailing programmes — from exterior refresh to full paint correction and ceramic coating. Vaughan's most elite mobile auto detailing studio.">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+
+    <style>
+    /* ─────────────────────────────────────────────
+       SERVICES PAGE — PAGE-SPECIFIC STYLES
+    ───────────────────────────────────────────── */
+
+    /* ── Banner ──────────────────────────────── */
+    .page-banner { padding: 170px 5% 100px; overflow: hidden; }
+    .page-banner::after {
+        content: '';
+        position: absolute; inset: 0;
+        background: radial-gradient(ellipse at 80% 60%, rgba(200,169,110,0.05) 0%, transparent 65%);
+        pointer-events: none;
+    }
+    .banner-ghost {
+        position: absolute; right: -2%; top: 50%;
+        transform: translateY(-50%);
+        font-family: var(--font-display);
+        font-size: clamp(120px, 18vw, 240px);
+        letter-spacing: -4px;
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(200,169,110,0.07);
+        white-space: nowrap; user-select: none; pointer-events: none;
+        line-height: 1; z-index: 0;
+    }
+    .banner-livery { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .banner-livery-line {
+        position: absolute; width: 1px;
+        background: linear-gradient(180deg, transparent 0%, rgba(200,169,110,0.12) 40%, rgba(200,169,110,0.06) 70%, transparent 100%);
+        height: 100%; transform-origin: top center;
+    }
+    .bll-1 { right: 18%; transform: rotate(8deg) scaleY(1.4); }
+    .bll-2 { right: 24%; transform: rotate(8deg) scaleY(1.6); opacity: 0.6; }
+    .bll-3 { right: 30%; transform: rotate(8deg) scaleY(1.8); opacity: 0.3; }
+    .page-banner-inner { position: relative; z-index: 1; }
+
+    /* ── Marquee strip ───────────────────────── */
+    .manifesto-strip { background: var(--gold); padding: 16px 5%; overflow: hidden; white-space: nowrap; }
+    .manifesto-inner { display: inline-flex; align-items: center; gap: 48px; animation: marquee 28s linear infinite; }
+    .manifesto-inner span { font-family: var(--font-display); font-size: 15px; letter-spacing: 4px; color: var(--black); text-transform: uppercase; flex-shrink: 0; }
+    .manifesto-sep { width: 4px; height: 4px; background: rgba(8,8,8,0.3); border-radius: 50%; flex-shrink: 0; }
+
+    /* ── Programme spectrum ──────────────────── */
+    .spectrum-section {
+        background: var(--black-2);
+        border-bottom: 1px solid var(--border);
+        padding: 48px 5%;
+    }
+    .spectrum-inner { max-width: 1120px; margin: 0 auto; }
+    .spectrum-label-row {
+        display: flex; justify-content: space-between; align-items: center;
+        margin-bottom: 28px;
+    }
+    .spectrum-label-row span {
+        font-size: 9px; font-weight: 600; letter-spacing: 3px;
+        text-transform: uppercase; color: var(--text-muted);
+    }
+    .spectrum-track {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 2px;
+    }
+    .spectrum-node { display: flex; flex-direction: column; align-items: center; gap: 12px; cursor: default; }
+    .spectrum-bar {
+        width: 100%; height: 3px;
+        background: var(--border);
+        border-radius: 0;
+        position: relative; overflow: hidden;
+    }
+    .spectrum-bar-fill {
+        position: absolute; inset-y: 0; left: 0;
+        background: var(--gold);
+    }
+    .spectrum-dot {
+        width: 8px; height: 8px; border-radius: 50%;
+        border: 1.5px solid var(--border);
+        background: var(--black-2);
+        transition: border-color 0.3s, background 0.3s;
+        margin-top: -5.5px;
+    }
+    .spectrum-node--active .spectrum-dot { border-color: var(--gold); background: var(--gold); }
+    .spectrum-node:hover .spectrum-dot { border-color: var(--gold); }
+    .spectrum-name {
+        font-family: var(--font-display);
+        font-size: 13px; letter-spacing: 2px;
+        color: var(--text-muted); text-transform: uppercase;
+        text-align: center; transition: color 0.3s; white-space: nowrap;
+    }
+    .spectrum-node--active .spectrum-name { color: var(--off-white); }
+    .spectrum-node:hover .spectrum-name { color: var(--gold); }
+    .spectrum-price-tag {
+        font-size: 10px; font-weight: 500; letter-spacing: 1px;
+        color: var(--text-dim); text-align: center; transition: color 0.3s;
+    }
+    .spectrum-node--active .spectrum-price-tag { color: var(--gold); }
+
+    /* ── Services section ────────────────────── */
+    .services-section {
+        padding: 100px 0 120px;
+        position: relative; overflow: hidden;
+    }
+    .services-section::before {
+        content: 'DETAIL';
+        position: absolute; right: -1%; top: 50%;
+        transform: translateY(-50%) rotate(90deg) translateX(40%);
+        transform-origin: center center;
+        font-family: var(--font-display);
+        font-size: clamp(60px, 9vw, 120px);
+        letter-spacing: 12px;
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(255,255,255,0.022);
+        white-space: nowrap; user-select: none; pointer-events: none; z-index: 0;
+    }
+
+    /* ── Service item layout ─────────────────── */
+    .service-item {
+        display: grid;
+        grid-template-columns: 72px 56px 1fr auto auto;
+        align-items: center;
+        gap: 0 24px;
+        padding: 36px 48px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        position: relative; overflow: hidden;
+        transition: background 0.35s var(--ease-out), border-color 0.35s, transform 0.35s var(--ease-out);
+        cursor: default;
+    }
+    .service-item::before {
+        content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0;
+        background: var(--gold); transition: width 0.35s var(--ease-out);
+    }
+    .service-item:hover::before { width: 3px; }
+    .service-item:hover { background: var(--card-2); border-color: var(--border-gold); transform: translateX(4px); }
+    .service-item--featured { background: var(--card-2); border-color: var(--border-gold); box-shadow: var(--shadow-gold); }
+    .service-item--featured::before { width: 3px; }
+    .service-item--pinnacle {
+        background: linear-gradient(135deg, var(--card-2) 0%, rgba(200,169,110,0.04) 100%);
+        border-color: rgba(200,169,110,0.25);
+    }
+
+    /* Icon column */
+    .service-icon-col {
+        display: flex; align-items: center; justify-content: center;
+        width: 56px; height: 56px;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        background: rgba(255,255,255,0.02);
+        flex-shrink: 0;
+        transition: border-color 0.35s, background 0.35s;
+    }
+    .service-item:hover .service-icon-col,
+    .service-item--featured .service-icon-col,
+    .service-item--pinnacle .service-icon-col {
+        border-color: var(--border-gold);
+        background: rgba(200,169,110,0.07);
+    }
+
+    /* Protection/intensity rating */
+    .service-rating {
+        display: flex; flex-direction: column;
+        align-items: flex-end; gap: 10px;
+        flex-shrink: 0;
+        padding: 0 36px 0 0;
+        border-right: 1px solid var(--border);
+        min-width: 130px;
+        transition: border-color 0.35s;
+    }
+    .service-item:hover .service-rating { border-color: var(--border-gold); }
+    .service-rating-label {
+        font-size: 9px; font-weight: 600; letter-spacing: 2px;
+        text-transform: uppercase; color: var(--text-dim);
+    }
+    .rating-bars { display: flex; gap: 3px; align-items: flex-end; }
+    .rating-bar {
+        width: 6px; border-radius: 1px;
+        background: rgba(255,255,255,0.06);
+        transition: background 0.35s;
+    }
+    .rating-bar.lit { background: var(--gold); }
+    .service-item:hover .rating-bar.lit { background: var(--gold-light); }
+    .service-rating-price {
+        font-family: var(--font-display);
+        font-size: 26px; letter-spacing: 1px;
+        color: var(--text-dim); line-height: 1;
+        transition: color 0.35s;
+    }
+    .service-item:hover .service-rating-price,
+    .service-item--featured .service-rating-price,
+    .service-item--pinnacle .service-rating-price { color: var(--gold); }
+    .service-rating-from {
+        font-size: 9px; font-weight: 500; letter-spacing: 2px;
+        text-transform: uppercase; color: var(--text-dim);
+    }
+
+    /* Num col */
+    .service-num {
+        font-family: var(--font-display); font-size: 44px;
+        color: var(--text-dim); letter-spacing: 1px;
+        line-height: 1; user-select: none; transition: color 0.35s;
+    }
+    .service-item:hover .service-num,
+    .service-item--featured .service-num,
+    .service-item--pinnacle .service-num { color: var(--gold); }
+
+    /* Tier divider */
+    .tier-divider {
+        display: grid; grid-template-columns: 1fr auto 1fr;
+        align-items: center; gap: 24px; margin: 4px 0; padding: 0 48px;
+    }
+    .tier-divider-line { height: 1px; background: linear-gradient(90deg, transparent, var(--border-gold), transparent); }
+    .tier-divider-label {
+        font-family: var(--font-body); font-size: 9px; font-weight: 600;
+        letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+        white-space: nowrap; opacity: 0.7;
+    }
+
+    /* ── CTA band ────────────────────────────── */
+    .cta-band { position: relative; overflow: hidden; }
+    .cta-band-ghost {
+        position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+        font-family: var(--font-display); font-size: clamp(80px, 14vw, 180px);
+        letter-spacing: -2px; color: transparent;
+        -webkit-text-stroke: 1px rgba(200,169,110,0.055);
+        white-space: nowrap; user-select: none; pointer-events: none; z-index: 0;
+    }
+    .cta-band-inner { position: relative; z-index: 1; }
+
+    /* ── Mobile ──────────────────────────────── */
+    @media (max-width: 960px) {
+        .service-item { grid-template-columns: 44px 48px 1fr; gap: 0 16px; padding: 30px 32px; }
+        .service-num { font-size: 32px; }
+        .service-icon-col { width: 48px; height: 48px; }
+        .service-rating { display: none; }
+        .service-book { padding: 10px 20px; font-size: 14px; }
+    }
+    @media (max-width: 680px) {
+        .service-item { grid-template-columns: 1fr; padding: 28px 24px; gap: 16px; }
+        .service-item-top-row { display: flex; align-items: center; gap: 14px; }
+        .service-num { font-size: 28px; }
+        .service-icon-col { display: none; }
+        .service-book { display: none; }
+        .banner-ghost, .services-section::before { display: none; }
+        .spectrum-name { font-size: 10px; letter-spacing: 1px; }
+        .spectrum-price-tag { display: none; }
+    }
+    </style>
+</head>
+<body>
+
+<header id="site-header">
+    <nav>
+        <a href="index.html" class="logo-link" aria-label="Elite Car Detailing Vaughan — Home">
+            <div class="logo-mark" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <polygon points="16,2 30,12 24,30 8,30 2,12" stroke="#c8a96e" stroke-width="1.5" fill="none"/>
+                    <polygon points="16,8 24,14 20,26 12,26 8,14" fill="#c8a96e" opacity="0.15"/>
+                    <line x1="16" y1="2" x2="16" y2="30" stroke="#c8a96e" stroke-width="0.75" opacity="0.4"/>
+                </svg>
+            </div>
+            <div class="logo-text-block">
+                <span class="logo-name">ELITE CAR DETAILING</span>
+                <span class="logo-location">VAUGHAN</span>
+            </div>
+        </a>
+        <ul class="nav-links" role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html" class="active-link">Services</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="book.html" class="nav-cta">Book Now</a></li>
+        </ul>
+        <div class="nav-phone"><a href="tel:+16473957905">647-395-7905</a></div>
+    </nav>
+</header>
+
+<button class="hamburger-fixed" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+</button>
+
+<!-- PAGE BANNER -->
+<div class="page-banner">
+    <div class="banner-livery" aria-hidden="true">
+        <div class="banner-livery-line bll-1"></div>
+        <div class="banner-livery-line bll-2"></div>
+        <div class="banner-livery-line bll-3"></div>
+    </div>
+    <div class="banner-ghost" aria-hidden="true">PROGRAMMES</div>
+    <div class="page-banner-inner">
+        <span class="page-banner-tag">Our Programmes</span>
+        <h1 class="page-banner-title">Every Service.<br>Executed<br>Flawlessly.</h1>
+        <p class="page-banner-sub">Six bespoke programmes engineered for every level of care — from a precision exterior reset to multi-day ceramic armour. Each performed by certified professionals using only industry-leading products.</p>
+    </div>
+</div>
+
+<!-- MARQUEE STRIP -->
+<div class="manifesto-strip" aria-hidden="true">
+    <div class="manifesto-inner">
+        <span>The Refresh</span><div class="manifesto-sep"></div>
+        <span>The Revival</span><div class="manifesto-sep"></div>
+        <span>The Signature</span><div class="manifesto-sep"></div>
+        <span>The Correction</span><div class="manifesto-sep"></div>
+        <span>The Shield</span><div class="manifesto-sep"></div>
+        <span>The Pinnacle</span><div class="manifesto-sep"></div>
+        <span>The Refresh</span><div class="manifesto-sep"></div>
+        <span>The Revival</span><div class="manifesto-sep"></div>
+        <span>The Signature</span><div class="manifesto-sep"></div>
+        <span>The Correction</span><div class="manifesto-sep"></div>
+        <span>The Shield</span><div class="manifesto-sep"></div>
+        <span>The Pinnacle</span><div class="manifesto-sep"></div>
+    </div>
+</div>
+
+<!-- PROGRAMME SPECTRUM -->
+<div class="spectrum-section">
+    <div class="spectrum-inner">
+        <div class="spectrum-label-row">
+            <span>Maintenance</span>
+            <span>Protection &amp; Restoration</span>
+        </div>
+        <div class="spectrum-track">
+            <div class="spectrum-node">
+                <div class="spectrum-bar"><div class="spectrum-bar-fill" style="width:16%"></div></div>
+                <div class="spectrum-dot"></div>
+                <span class="spectrum-name">Refresh</span>
+                <span class="spectrum-price-tag">from $149</span>
+            </div>
+            <div class="spectrum-node">
+                <div class="spectrum-bar"><div class="spectrum-bar-fill" style="width:32%"></div></div>
+                <div class="spectrum-dot"></div>
+                <span class="spectrum-name">Revival</span>
+                <span class="spectrum-price-tag">from $179</span>
+            </div>
+            <div class="spectrum-node spectrum-node--active">
+                <div class="spectrum-bar"><div class="spectrum-bar-fill" style="width:50%"></div></div>
+                <div class="spectrum-dot"></div>
+                <span class="spectrum-name">Signature</span>
+                <span class="spectrum-price-tag">from $299</span>
+            </div>
+            <div class="spectrum-node">
+                <div class="spectrum-bar"><div class="spectrum-bar-fill" style="width:66%"></div></div>
+                <div class="spectrum-dot"></div>
+                <span class="spectrum-name">Correction</span>
+                <span class="spectrum-price-tag">from $499</span>
+            </div>
+            <div class="spectrum-node">
+                <div class="spectrum-bar"><div class="spectrum-bar-fill" style="width:82%"></div></div>
+                <div class="spectrum-dot"></div>
+                <span class="spectrum-name">Shield</span>
+                <span class="spectrum-price-tag">from $849</span>
+            </div>
+            <div class="spectrum-node">
+                <div class="spectrum-bar"><div class="spectrum-bar-fill" style="width:100%"></div></div>
+                <div class="spectrum-dot"></div>
+                <span class="spectrum-name">Pinnacle</span>
+                <span class="spectrum-price-tag">from $1,299</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SERVICES LIST -->
+<section class="services-section" id="services">
+    <div class="container">
+        <div class="services-list">
+
+            <!-- 01 THE REFRESH -->
+            <div class="service-item reveal" data-num="01">
+                <div class="service-num" aria-hidden="true">01</div>
+                <div class="service-icon-col" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                        <path d="M5 19c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                        <path d="M13 11V7" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="13" cy="5" r="2" stroke="#c8a96e" stroke-width="1.2" fill="none"/>
+                        <path d="M7 9c.3-1.5 1.5-2.5 3-2.5M19 9c-.3-1.5-1.5-2.5-3-2.5" stroke="#c8a96e" stroke-width="1.1" stroke-linecap="round" opacity="0.45"/>
+                        <path d="M4 21h18" stroke="#c8a96e" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+                    </svg>
+                </div>
+                <div class="service-body">
+                    <div class="service-top">
+                        <h3 class="service-name">The Refresh</h3>
+                        <span class="service-duration">2–3 hrs</span>
+                    </div>
+                    <p class="service-desc">A precision exterior reset. Hand wash, iron decontamination, clay bar treatment, and a spray sealant for immediate protection. The perfect maintenance programme between full sessions.</p>
+                    <div class="service-includes">
+                        <span>Hand Wash &amp; Dry</span>
+                        <span>Iron Decontamination</span>
+                        <span>Clay Bar</span>
+                        <span>Spray Sealant</span>
+                        <span>Tyre &amp; Trim Dressing</span>
+                    </div>
+                </div>
+                <div class="service-rating">
+                    <span class="service-rating-label">Intensity</span>
+                    <div class="rating-bars">
+                        <div class="rating-bar lit" style="height:8px"></div>
+                        <div class="rating-bar" style="height:12px"></div>
+                        <div class="rating-bar" style="height:16px"></div>
+                        <div class="rating-bar" style="height:20px"></div>
+                        <div class="rating-bar" style="height:24px"></div>
+                    </div>
+                    <span class="service-rating-from">From</span>
+                    <span class="service-rating-price">$149</span>
+                </div>
+                <a href="book.html" class="service-book" aria-label="Book The Refresh">BOOK</a>
+            </div>
+
+            <!-- 02 THE REVIVAL -->
+            <div class="service-item reveal" data-num="02">
+                <div class="service-num" aria-hidden="true">02</div>
+                <div class="service-icon-col" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                        <rect x="3" y="14" width="20" height="8" rx="2" stroke="#c8a96e" stroke-width="1.5" fill="none"/>
+                        <path d="M7 14v-1.5A2.5 2.5 0 019.5 10h7a2.5 2.5 0 012.5 2.5V14" stroke="#c8a96e" stroke-width="1.5" fill="none"/>
+                        <path d="M8 7c0-1.5 2-1.5 2-3M13 6.5c0-1.5 2-1.5 2-3M18 7c0-1.5 2-1.5 2-3" stroke="#c8a96e" stroke-width="1.3" stroke-linecap="round" opacity="0.55"/>
+                        <circle cx="13" cy="18" r="1.5" fill="#c8a96e" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="service-body">
+                    <div class="service-top">
+                        <h3 class="service-name">The Revival</h3>
+                        <span class="service-duration">3–5 hrs</span>
+                    </div>
+                    <p class="service-desc">A transformative interior deep clean. Steam sanitization of all surfaces, full vacuum and extraction, leather conditioning, odour elimination, and window polishing. Your cabin, completely restored.</p>
+                    <div class="service-includes">
+                        <span>Steam Sanitization</span>
+                        <span>Deep Extraction</span>
+                        <span>Leather Conditioning</span>
+                        <span>Odour Elimination</span>
+                        <span>Interior Glass Polish</span>
+                    </div>
+                </div>
+                <div class="service-rating">
+                    <span class="service-rating-label">Intensity</span>
+                    <div class="rating-bars">
+                        <div class="rating-bar lit" style="height:8px"></div>
+                        <div class="rating-bar lit" style="height:12px"></div>
+                        <div class="rating-bar" style="height:16px"></div>
+                        <div class="rating-bar" style="height:20px"></div>
+                        <div class="rating-bar" style="height:24px"></div>
+                    </div>
+                    <span class="service-rating-from">From</span>
+                    <span class="service-rating-price">$179</span>
+                </div>
+                <a href="book.html" class="service-book" aria-label="Book The Revival">BOOK</a>
+            </div>
+
+            <!-- 03 THE SIGNATURE (featured) -->
+            <div class="service-item reveal service-item--featured" data-num="03">
+                <div class="service-num" aria-hidden="true">03</div>
+                <div class="service-icon-col" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                        <path d="M13 3l2.4 7.2H23l-6.2 4.5 2.4 7.3L13 17.5l-6.2 4.5 2.4-7.3L3 10.2h7.6L13 3z" stroke="#c8a96e" stroke-width="1.4" fill="rgba(200,169,110,0.1)" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="service-body">
+                    <div class="service-top">
+                        <h3 class="service-name">The Signature</h3>
+                        <span class="service-badge">Most Popular</span>
+                        <span class="service-duration">5–8 hrs</span>
+                    </div>
+                    <p class="service-desc">Our complete head-to-tail programme. The Refresh exterior process combined with The Revival interior treatment — every surface of your vehicle addressed, perfected, and protected in a single session.</p>
+                    <div class="service-includes">
+                        <span>Full Exterior Detail</span>
+                        <span>Full Interior Detail</span>
+                        <span>Engine Bay Cleaning</span>
+                        <span>All Glass Polished</span>
+                        <span>Spray Sealant Finish</span>
+                    </div>
+                </div>
+                <div class="service-rating">
+                    <span class="service-rating-label">Intensity</span>
+                    <div class="rating-bars">
+                        <div class="rating-bar lit" style="height:8px"></div>
+                        <div class="rating-bar lit" style="height:12px"></div>
+                        <div class="rating-bar lit" style="height:16px"></div>
+                        <div class="rating-bar" style="height:20px"></div>
+                        <div class="rating-bar" style="height:24px"></div>
+                    </div>
+                    <span class="service-rating-from">From</span>
+                    <span class="service-rating-price">$299</span>
+                </div>
+                <a href="book.html" class="service-book" aria-label="Book The Signature">BOOK</a>
+            </div>
+
+            <!-- TIER DIVIDER -->
+            <div class="tier-divider" aria-hidden="true">
+                <div class="tier-divider-line"></div>
+                <span class="tier-divider-label">Transformation Tier</span>
+                <div class="tier-divider-line"></div>
+            </div>
+
+            <!-- 04 THE CORRECTION -->
+            <div class="service-item reveal" data-num="04">
+                <div class="service-num" aria-hidden="true">04</div>
+                <div class="service-icon-col" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                        <circle cx="13" cy="13" r="9" stroke="#c8a96e" stroke-width="1.5" fill="none"/>
+                        <circle cx="13" cy="13" r="5" stroke="#c8a96e" stroke-width="1" stroke-dasharray="2.5 2" fill="none" opacity="0.45"/>
+                        <circle cx="13" cy="13" r="1.5" fill="#c8a96e" opacity="0.9"/>
+                        <path d="M13 4V2.5M13 23.5V22M4 13H2.5M23.5 13H22" stroke="#c8a96e" stroke-width="1.3" stroke-linecap="round" opacity="0.35"/>
+                    </svg>
+                </div>
+                <div class="service-body">
+                    <div class="service-top">
+                        <h3 class="service-name">The Correction</h3>
+                        <span class="service-duration">6–10 hrs</span>
+                    </div>
+                    <p class="service-desc">Machine polish paint correction designed to eliminate swirl marks, fine scratches, oxidation, and water spot etching. Paintwork restored to its true factory depth and clarity — often exceeding it.</p>
+                    <div class="service-includes">
+                        <span>Single or Two-Stage Polish</span>
+                        <span>Swirl &amp; Scratch Removal</span>
+                        <span>Oxidation Correction</span>
+                        <span>Water Spot Elimination</span>
+                        <span>Panel Wipe Down</span>
+                    </div>
+                </div>
+                <div class="service-rating">
+                    <span class="service-rating-label">Intensity</span>
+                    <div class="rating-bars">
+                        <div class="rating-bar lit" style="height:8px"></div>
+                        <div class="rating-bar lit" style="height:12px"></div>
+                        <div class="rating-bar lit" style="height:16px"></div>
+                        <div class="rating-bar lit" style="height:20px"></div>
+                        <div class="rating-bar" style="height:24px"></div>
+                    </div>
+                    <span class="service-rating-from">From</span>
+                    <span class="service-rating-price">$499</span>
+                </div>
+                <a href="book.html" class="service-book" aria-label="Book The Correction">BOOK</a>
+            </div>
+
+            <!-- 05 THE SHIELD -->
+            <div class="service-item reveal" data-num="05">
+                <div class="service-num" aria-hidden="true">05</div>
+                <div class="service-icon-col" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                        <path d="M13 3L4 7v7c0 5 4 8.5 9 10 5-1.5 9-5 9-10V7L13 3z" stroke="#c8a96e" stroke-width="1.5" fill="rgba(200,169,110,0.06)" stroke-linejoin="round"/>
+                        <path d="M9 13l3 3 5-5" stroke="#c8a96e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="service-body">
+                    <div class="service-top">
+                        <h3 class="service-name">The Shield</h3>
+                        <span class="service-duration">1–2 days</span>
+                    </div>
+                    <p class="service-desc">Professional-grade nano-ceramic coating delivering years of hydrophobic paint protection in a single application. Scratch resistance, UV protection, and a permanent mirror-gloss finish that maintenance washing cannot replicate.</p>
+                    <div class="service-includes">
+                        <span>Surface Decontamination</span>
+                        <span>Panel Prep &amp; Polish</span>
+                        <span>Ceramic Coating Application</span>
+                        <span>24h Cure Period</span>
+                        <span>3–5 Year Protection</span>
+                    </div>
+                </div>
+                <div class="service-rating">
+                    <span class="service-rating-label">Intensity</span>
+                    <div class="rating-bars">
+                        <div class="rating-bar lit" style="height:8px"></div>
+                        <div class="rating-bar lit" style="height:12px"></div>
+                        <div class="rating-bar lit" style="height:16px"></div>
+                        <div class="rating-bar lit" style="height:20px"></div>
+                        <div class="rating-bar" style="height:24px"></div>
+                    </div>
+                    <span class="service-rating-from">From</span>
+                    <span class="service-rating-price">$849</span>
+                </div>
+                <a href="book.html" class="service-book" aria-label="Book The Shield">BOOK</a>
+            </div>
+
+            <!-- 06 THE PINNACLE (elite) -->
+            <div class="service-item reveal service-item--pinnacle" data-num="06">
+                <div class="service-num" aria-hidden="true">06</div>
+                <div class="service-icon-col" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                        <polygon points="13,2 24,10 20,23 6,23 2,10" stroke="#c8a96e" stroke-width="1.5" fill="rgba(200,169,110,0.07)" stroke-linejoin="round"/>
+                        <polygon points="13,7 18,11 16,19 10,19 8,11" stroke="#c8a96e" stroke-width="0.8" fill="none" opacity="0.4"/>
+                        <circle cx="13" cy="13" r="1.5" fill="#c8a96e"/>
+                    </svg>
+                </div>
+                <div class="service-body">
+                    <div class="service-top">
+                        <h3 class="service-name">The Pinnacle</h3>
+                        <span class="service-badge service-badge--gold">Elite</span>
+                        <span class="service-duration">2–3 days</span>
+                    </div>
+                    <p class="service-desc">The definitive treatment. Full paint correction to eliminate every imperfection, followed immediately by ceramic coating application — locking in flawless, corrected paintwork under years of protective armour. Reserved for vehicles that deserve nothing less.</p>
+                    <div class="service-includes">
+                        <span>Full Paint Correction</span>
+                        <span>Premium Ceramic Coating</span>
+                        <span>Interior Deep Clean</span>
+                        <span>All Trim Coated</span>
+                        <span>5+ Year Protection</span>
+                    </div>
+                </div>
+                <div class="service-rating">
+                    <span class="service-rating-label">Intensity</span>
+                    <div class="rating-bars">
+                        <div class="rating-bar lit" style="height:8px"></div>
+                        <div class="rating-bar lit" style="height:12px"></div>
+                        <div class="rating-bar lit" style="height:16px"></div>
+                        <div class="rating-bar lit" style="height:20px"></div>
+                        <div class="rating-bar lit" style="height:24px"></div>
+                    </div>
+                    <span class="service-rating-from">From</span>
+                    <span class="service-rating-price">$1,299</span>
+                </div>
+                <a href="book.html" class="service-book" aria-label="Book The Pinnacle">BOOK</a>
+            </div>
+
+        </div>
+
+        <p style="margin-top:32px; font-size:11px; font-weight:400; letter-spacing:1px; color:var(--text-dim); text-align:center; text-transform:uppercase;">
+            Base rates for standard sedans &nbsp;·&nbsp; SUV/crossover +$30–50 &nbsp;·&nbsp; Full-size truck/large SUV +$50–80
+        </p>
+    </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="section section--dark cta-band">
+    <div class="cta-band-ghost" aria-hidden="true">BOOK</div>
+    <div class="container cta-band-inner" style="text-align:center; max-width:620px;">
+        <span class="section-tag section-tag--light">Ready to Begin?</span>
+        <h2 class="section-title section-title--light" style="margin-bottom:24px;">Not Sure Which<br>Programme Is Right?</h2>
+        <p style="color:var(--text-muted); font-weight:300; margin-bottom:40px; line-height:1.8;">Call us and we'll walk you through the right programme for your vehicle's condition and goals — no commitment needed.</p>
+        <div style="display:flex; align-items:center; justify-content:center; gap:24px; flex-wrap:wrap;">
+            <a href="book.html" class="btn-primary">BOOK YOUR SESSION &nbsp;→</a>
+            <a href="tel:+16473957905" class="btn-ghost">647-395-7905</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="footer-logo-mark" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                    <polygon points="16,2 30,12 24,30 8,30 2,12" stroke="#c8a96e" stroke-width="1.5" fill="none"/>
+                    <polygon points="16,8 24,14 20,26 12,26 8,14" fill="#c8a96e" opacity="0.12"/>
+                </svg>
+            </div>
+            <div>
+                <span class="footer-name">ELITE CAR DETAILING</span>
+                <span class="footer-location">VAUGHAN</span>
+            </div>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="book.html">Book</a>
+        </div>
+        <div class="footer-contact-col">
+            <a href="tel:+16473957905" class="footer-phone">647-395-7905</a>
+            <p>Vaughan &amp; York Region</p>
+            <p>Mon – Sun &nbsp;·&nbsp; 8am – 8pm</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Elite Car Detailing Vaughan &nbsp;|&nbsp; All Rights Reserved</p>
+        <p>Serving Vaughan, Woodbridge, Maple, Kleinburg &amp; the GTA</p>
+    </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
